@@ -59,26 +59,6 @@ function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 
-async function randomizedPick() {
-  document.getElementById("resultList").innerHTML = "";
-  const result = getRandomUniqueElements(getCurrentList(), quantifier);
-  for (let i = 0; i < result.length; i++) {
-    addStudent(result[i]);
-    await delay(500);
-  }
-}
-
-function getRandomUniqueElements(array, quantifier) {
-  if (quantifier > array.length) {
-    throw new Error("Nicht genug einzigartige Elemente im Array.");
-  }
-  const shuffled = [...array];
-  for (let i = shuffled.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-  }
-  return shuffled.slice(0, quantifier);
-}
 
 function addStudent(student) {
   const resultList = document.getElementById("resultList");

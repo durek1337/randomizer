@@ -142,6 +142,7 @@ function updateQuantifierSelect() {
     select.appendChild(option);
   }
   quantifier = Math.min(quantifier, getCurrentList().length);
+  select.value = quantifier;
 }
 
 function updateListSelector() {

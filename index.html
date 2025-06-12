@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Zufallsgenerator</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="container">
+  <input id="pageTitleInput" type="text" onchange="renameListTitle()" />
+
+  <label for="listSelector"><strong>Liste wählen:</strong></label>
+  <select id="listSelector"></select>
+  <button onclick="duplicateList()">Duplizieren</button>
+  <button onclick="deleteCurrentList()">Löschen</button>
+
+  <div id="result" class="result">
+    <ol id="resultList"></ol>
+  </div>
+
+  <h2 id="headList">Zur Auswahl</h2>
+  <div id="list"></div>
+
+  <select id="quantifierSelect"></select>
+  <button onclick="randomizedPick()">Zufällig aus der Liste</button>
+
+  <h3>Neue Person hinzufügen</h3>
+  <input type="text" id="newStudentInput" placeholder="Name eingeben" autofocus />
+  <button onclick="addNewStudent()">Hinzufügen</button>
+
+  <h3>Listen Exportieren/Importieren</h3>
+  <textarea id="jsonArea" rows="10" cols="50" placeholder="JSON-Daten hier einfügen oder kopieren"></textarea><br>
+  <br><br>
+  <input type="file" id="fileInput" onchange="uploadBackupFile(event)">
+  <button onclick="downloadBackupFile()">Backup speichern</button>
+  <button onclick="exportToCSV()">CSV-Export</button>
+
+  <button onclick="exportLists()">Exportieren</button>
+  <button onclick="importLists()">Importieren</button>
+  <button onclick="resetToDefaultList()">Zurücksetzen</button>
+</div>
+
+<script src="js/main.js" defer></script>
+</body>
+</html>

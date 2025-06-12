@@ -376,17 +376,25 @@ function showList() {
 
 // Zufall mit Gewichtung: z. B. Favoriten oder Entzerrung
 function getWeightedRandomUniqueElements(array, quantifier) {
-  const weights = array.map(name => {
-    return name.includes("*") ? 2 : 1; // z. B. Markierung durch "*"
-  });
+  const weights = array.map(name => (name.includes("*") ? 2 : 1));
 
+  // Erweitere das Array anhand der Gewichtung
   const weighted = array.flatMap((item, i) => Array(weights[i]).fill(item));
-  const unique = new Set();
-  while (unique.size < quantifier && unique.size < array.length) {
-    const pick = weighted[Math.floor(Math.random() * weighted.length)];
-    unique.add(pick);
+
+  // Shuffle-Algorithmus (Fisher-Yates)
+  for (let i = weighted.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [weighted[i], weighted[j]] = [weighted[j], weighted[i]];
   }
-  return Array.from(unique);
+
+  const result = [];
+  for (const item of weighted) {
+    if (!result.includes(item)) {
+      result.push(item);
+      if (result.length === quantifier) break;
+    }
+  }
+  return result;
 }
 
 function randomizedPick() {

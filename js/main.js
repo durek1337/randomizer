@@ -73,12 +73,26 @@ function addStudent(student) {
 
 function showList() {
   const list = getCurrentList();
-  const listHTML = "<ul>" + list.map((e, i) => (
-    "<li>" + e +
-    " <button onclick='editStudent(" + i + ")'>✏️</button>" +
-    " <button onclick='removeStudent(" + i + ")'>🗑️</button>" +
-    "</li>"
-  )).join("") + "</ul>";
+  const listHTML =
+    "<ul>" +
+    list
+      .map(
+        (e, i) =>
+          "<li>" +
+          "<span class='entry'>" +
+          e +
+          "</span>" +
+          "<span class='actions'>" +
+          "<button onclick='editStudent(" +
+          i +
+          ")'>✏️</button>" +
+          " <button onclick='removeStudent(" +
+          i +
+          ")'>🗑️</button>" +
+          "</span></li>"
+      )
+      .join("") +
+    "</ul>";
   document.getElementById("list").innerHTML = listHTML;
   document.getElementById("headList").textContent = "Zur Auswahl (" + list.length + ")";
 }
@@ -344,12 +358,26 @@ function enableSorting() {
 
 function showList() {
   const list = getCurrentList();
-  const listHTML = "<ul>" + list.map((e, i) => (
-    "<li draggable='true'>" + e +
-    " <button onclick='editStudent(" + i + ")'>✏️</button>" +
-    " <button onclick='removeStudent(" + i + ")'>🗑️</button>" +
-    "</li>"
-  )).join("") + "</ul>";
+  const listHTML =
+    "<ul>" +
+    list
+      .map(
+        (e, i) =>
+          "<li draggable='true'>" +
+          "<span class='entry'>" +
+          e +
+          "</span>" +
+          "<span class='actions'>" +
+          "<button onclick='editStudent(" +
+          i +
+          ")'>✏️</button>" +
+          " <button onclick='removeStudent(" +
+          i +
+          ")'>🗑️</button>" +
+          "</span></li>"
+      )
+      .join("") +
+    "</ul>";
   document.getElementById("list").innerHTML = listHTML;
   document.getElementById("headList").textContent = "Zur Auswahl (" + list.length + ")";
   enableSorting();
